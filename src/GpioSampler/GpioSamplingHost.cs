@@ -64,7 +64,7 @@ internal sealed class GpioSamplingHost : BackgroundService
             .Select((group, index) => (Index: index, Group: group))
             .Select(group => Chart2D.Chart.Line<double, int, string>(
                 x: group.Group.Select(sample => sample.RelativeOffset.TotalMilliseconds),
-                y: group.Group.Select(sample => (sample.Value ? 1 : 0) + group.Index),
+                y: group.Group.Select(sample => (sample.Value ? 1 : 0) + (group.Index * 2)),
                 Name: group.Group.Key,
                 Line: Line.init(Shape: StyleParam.Shape.Hv))
                 .WithLayout(Layout.init<string>(Width: 1200)))
